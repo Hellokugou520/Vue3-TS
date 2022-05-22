@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../js/vue.global.js"></script>
+    <script>
+        // 这里主要还是Vue2的选项式API，因为Vue3是兼容Vue2的
+        Vue.createApp({
+            template: `
+                <h2>{{count}}</h2>
+                <button @click="addNum">+1</button>
+                <button @click="reduceNum">-1</button>
+            `,
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                addNum () {
+                    this.count++
+                },
+                reduceNum () {
+                    this.count--
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

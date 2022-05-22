@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../js/vue.global.js"></script>
+
+    <!-- 第一种template写法 -->
+    <!-- <script type="x-template" id="content">
+        <h2>{{count}}</h2>
+        <button @click="addNum">+1</button>
+        <button @click="reduceNum">-1</button>
+    </script> -->
+
+    <!-- 第二种template写法 -->
+    <!-- template标签是HTML原生提供的一个标签 -->
+    <!-- HTML 内容模板（<template>）元素是一种用于保存客户端内容机制，该内容在加载页面时不会呈现，但随后可以 (原文为 may be) 在运行时使用 JavaScript 实例化。 -->
+    <template id="content">
+        <h2>{{count}}</h2>
+        <button @click="addNum">+1</button>
+        <button @click="reduceNum">-1</button>
+    </template>
+
+    <script>
+        Vue.createApp({
+            // 直接在template属性中定义标签字符串没有编写提示，没有高亮提示，不便于我们编写HTML代码，Vue提供了两种template写法
+            // 如果字符串以 # 开始，则它将被用作 querySelector，并使用匹配元素的 innerHTML 作为模板字符串
+            template: '#content',
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                addNum () {
+                    this.count++
+                },
+                reduceNum () {
+                    this.count--
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

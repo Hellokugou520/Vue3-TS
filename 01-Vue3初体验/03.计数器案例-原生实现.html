@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 class="count">0</h2>
+    <button class="add" onclick="addNum()">+1</button>
+    <button class="reduce" onclick="reduceNum()">-1</button>
+
+    <script>
+        // 1.首先获取相关的DOM
+        let count = document.querySelector('.count')
+
+        let num = 0
+
+        // 2.给DOM添加事件
+        function addNum () {
+            count.innerHTML = ++num
+        }
+
+        function reduceNum () {
+            count.innerHTML = --num
+        }
+    </script>
+</body>
+
+</html>
