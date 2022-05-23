@@ -24,6 +24,7 @@
     <!-- template标签是HTML原生提供的一个标签 -->
     <!-- HTML 内容模板（<template>）元素是一种用于保存客户端内容机制，该内容在加载页面时不会呈现，但随后可以 (原文为 may be) 在运行时使用 JavaScript 实例化。 -->
     <template id="content">
+        <!-- Vue3中允许template模板中有多个根元素，在Vue2中这会产生报错 -->
         <h2>{{count}}</h2>
         <button @click="addNum">+1</button>
         <button @click="reduceNum">-1</button>

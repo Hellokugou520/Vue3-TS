@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../js/vue.global.js"></script>
+
+    <!-- 有时候我们需要控制一组元素的显示隐藏 -->
+    <template id="content">
+        <!-- 1.如果使用div或其他元素进行包裹，那么在渲染的时候这个div也会被渲染到DOM中 -->
+        <div v-if="isShow">
+            <h2>div + v-if</h2>
+            <h2>div + v-if</h2>
+            <h2>div + v-if</h2>
+        </div>
+        <!-- 2.如果这里使用template来进行包裹，实际渲染的只有被包裹的那些元素 -->
+        <template v-if="isShow">
+            <h2>template + v-if</h2>
+            <h2>template + v-if</h2>
+            <h2>template + v-if</h2>
+        </template>
+        <!-- 3.如果是v-show是不行的，里面的内容不会显示 -->
+        <template v-show="isShow">
+            <h2>template + v-show</h2>
+            <h2>template + v-show</h2>
+            <h2>template + v-show</h2>
+        </template>
+    </template>
+
+    <script>
+        Vue.createApp({
+            template: '#content',
+            data: function () {
+                return {
+                    isShow: true
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

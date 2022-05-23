@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../js/vue.global.js"></script>
+
+    <template id="content">
+        <!-- 有时候为了控制某一组数据的遍历，需要在一组元素的外面再包裹一层 -->
+        <ul>
+            <!-- 1.直接用div，最终渲染出来的DOM中会多出来不必要的div元素 -->
+            <div v-for="(value,key) in gameObj">
+                <li>{{key}}</li>
+                <li>{{value}}</li>
+                <hr>
+            </div>
+        </ul>
+        <ul>
+            <!-- 2.借助template标签可以解决上述问题 -->
+            <template v-for="(value,key) in gameObj">
+                <li>{{key}}</li>
+                <li>{{value}}</li>
+                <hr>
+            </template>
+        </ul>
+    </template>
+
+    <script>
+        Vue.createApp({
+            template: '#content',
+            data: function () {
+                return {
+                    gameObj: {
+                        name: '寂静岭',
+                        size: '5G',
+                        platform: 'PC'
+                    }
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
