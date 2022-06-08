@@ -59,5 +59,8 @@ module.exports = {
     ],
     // 建立打包代码和源代码之间的映射关系，方便开发时调试错误(会生成一个XXX.map文件)
     devtool: 'source-map',
+    devServer: {
+        open: true
+    },
     mode: 'development'
 }
