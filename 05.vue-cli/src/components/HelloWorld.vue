@@ -3,6 +3,7 @@
   <!-- 具有多个根节点的组件如果未显式绑定 $attrs，将发出运行时警告。 -->
   <div>
     <h1 v-bind="$attrs" @click="changeColor">{{ msg }}</h1>
+    <h1>provide/inject：{{ root }}</h1>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default defineComponent({
   name: 'HelloWorld',
   // 禁用 Attribute 继承
   inheritAttrs: false,
+  inject: ['root'],
   props: {
     msg: String
   },
