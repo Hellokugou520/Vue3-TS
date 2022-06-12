@@ -4,6 +4,17 @@
   <div>
     <h1 v-bind="$attrs" @click="changeColor">{{ msg }}</h1>
     <h1>provide/inject：{{ root }}</h1>
+    <h1>--------------插槽开始--------------</h1>
+    <!-- 插槽具体显示什么元素，由外部传入的标签体内容决定 -->
+    <slot>
+      <!-- 没有传入内容时，使用这里的元素作为默认内容 -->
+      <div>插槽默认内容</div>
+    </slot>
+    <!-- 具名插槽 -->
+    <slot name="up"></slot>
+    <!-- 动态插槽名 && 作用域插槽 -->
+    <slot :name="slotName" :value="slotContent"></slot>
+    <h1>--------------插槽结束--------------</h1>
   </div>
 </template>
 
@@ -16,7 +27,8 @@ export default defineComponent({
   inheritAttrs: false,
   inject: ['root'],
   props: {
-    msg: String
+    msg: String,
+    slotName: String
   },
   // emits: ['changeColor'],
   // 对象写法：可以对参数进行验证
@@ -24,6 +36,11 @@ export default defineComponent({
     changeColor(payload: true) {
       if (payload) return true
       else return false
+    }
+  },
+  data() {
+    return {
+      slotContent: '具名下部插槽'
     }
   },
   methods: {

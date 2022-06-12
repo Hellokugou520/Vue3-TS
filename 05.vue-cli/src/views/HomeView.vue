@@ -3,10 +3,21 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <!-- 非 Prop 的 Attribute -->
     <HelloWorld
-      :class="isRed ? 'hello' : ''"
       msg="点击变色"
+      :class="isRed ? 'hello' : ''"
+      :slotName="slotName"
       @changeColor="changeColor"
-    />
+    >
+      <div>插槽内容</div>
+      <!-- #是v-slot:的缩写 -->
+      <template #up>
+        <div>具名上部插槽</div>
+      </template>
+      <!-- 动态插槽名 && 作用域插槽 -->
+      <template #[slotName]="{ value }">
+        <div>{{ value }}</div>
+      </template>
+    </HelloWorld>
   </div>
 </template>
 
@@ -21,7 +32,8 @@ export default defineComponent({
   },
   data() {
     return {
-      isRed: false
+      isRed: false,
+      slotName: 'down'
     }
   },
   methods: {
