@@ -4,7 +4,7 @@
   <div>
     <h1 v-bind="$attrs" @click="changeColor">{{ msg }}</h1>
     <h1>provide/inject：{{ root }}</h1>
-    <h1>--------------插槽开始--------------</h1>
+    <h3>--------------插槽开始--------------</h3>
     <!-- 插槽具体显示什么元素，由外部传入的标签体内容决定 -->
     <slot>
       <!-- 没有传入内容时，使用这里的元素作为默认内容 -->
@@ -14,18 +14,31 @@
     <slot name="up"></slot>
     <!-- 动态插槽名 && 作用域插槽 -->
     <slot :name="slotName" :value="slotContent"></slot>
-    <h1>--------------插槽结束--------------</h1>
+    <h3>--------------插槽结束--------------</h3>
+    <!-- 异步组件 -->
+    <AsyncComponent />
+    <!-- 自定义Input -->
+    <CustomInput v-model="customInputValue" :labelName="customLabelName" />
+    <div>{{ customInputValue }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 
 export default defineComponent({
   name: 'HelloWorld',
   // 禁用 Attribute 继承
   inheritAttrs: false,
   inject: ['root'],
+  components: {
+    AsyncComponent: defineAsyncComponent(
+      () => import('./components/AsyncComponent.vue')
+    ),
+    CustomInput: defineAsyncComponent(
+      () => import('./components/CustomInput.vue')
+    )
+  },
   props: {
     msg: String,
     slotName: String
@@ -40,7 +53,9 @@ export default defineComponent({
   },
   data() {
     return {
-      slotContent: '具名下部插槽'
+      slotContent: '具名下部插槽',
+      customInputValue: '在组件上使用v-model',
+      customLabelName: '自定义Input'
     }
   },
   methods: {
