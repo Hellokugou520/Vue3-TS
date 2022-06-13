@@ -20,6 +20,8 @@
     <!-- 自定义Input -->
     <CustomInput v-model="customInputValue" :labelName="customLabelName" />
     <div>{{ customInputValue }}</div>
+    <!-- 动画组件 -->
+    <AnimationDemo />
   </div>
 </template>
 
@@ -37,6 +39,9 @@ export default defineComponent({
     ),
     CustomInput: defineAsyncComponent(
       () => import('./components/CustomInput.vue')
+    ),
+    AnimationDemo: defineAsyncComponent(
+      () => import('./components/AnimationDemo.vue')
     )
   },
   props: {
