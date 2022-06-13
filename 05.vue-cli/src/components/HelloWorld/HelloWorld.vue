@@ -27,12 +27,14 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
+import { myMixin } from './mixin/myMixin.js'
 
 export default defineComponent({
   name: 'HelloWorld',
   // 禁用 Attribute 继承
   inheritAttrs: false,
   inject: ['root'],
+  mixins: [myMixin],
   components: {
     AsyncComponent: defineAsyncComponent(
       () => import('./components/AsyncComponent.vue')
@@ -51,7 +53,7 @@ export default defineComponent({
   // emits: ['changeColor'],
   // 对象写法：可以对参数进行验证
   emits: {
-    changeColor(payload: true) {
+    changeColor(payload: boolean) {
       if (payload) return true
       else return false
     }
@@ -62,6 +64,9 @@ export default defineComponent({
       customInputValue: '在组件上使用v-model',
       customLabelName: '自定义Input'
     }
+  },
+  created() {
+    console.log('Hello from Component!')
   },
   methods: {
     changeColor() {
