@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import CompositionApi from "../views/CompositionApi.vue";
+import CompositionView from "../views/CompositionView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "compositionApi",
-    component: CompositionApi,
+    component: CompositionView,
   },
   {
     path: "/home",
