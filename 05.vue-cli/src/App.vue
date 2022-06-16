@@ -1,6 +1,7 @@
 <template>
   <nav>
     <router-link to="/">CompositionApi</router-link> |
+    <router-link to="/otherFeatures">OtherFeatures</router-link> |
     <router-link to="/home">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>

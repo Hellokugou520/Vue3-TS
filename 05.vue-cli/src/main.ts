@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import registerDirectives from "./directives/index.js";
+import registerPlugins from "./plugins/index.js";
 
 const app = createApp(App);
 app.use(store).use(router).mount("#app");
@@ -15,3 +17,6 @@ app.use(store).use(router).mount("#app");
  * (this config is temporary and will not be needed in the future.)
  */
 app.config.unwrapInjectedRef = true;
+
+registerDirectives(app);
+registerPlugins(app);

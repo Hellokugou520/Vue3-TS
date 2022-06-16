@@ -8,6 +8,14 @@ const routes: Array<RouteRecordRaw> = [
     component: CompositionView,
   },
   {
+    path: "/otherFeatures",
+    name: "otherFeatures",
+    component: () =>
+      import(
+        /* webpackChunkName: "otherFeatures" */ "../views/OtherFeatures.vue"
+      ),
+  },
+  {
     path: "/home",
     name: "home",
     component: () =>
