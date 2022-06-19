@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini-vue</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <!-- 渲染模块 -->
+    <script src="./js/renderer.js"></script>
+    <!-- 响应式模块 -->
+    <script src="./js/reactive.js"></script>
+    <script src="./js//index.js"></script>
+    <!-- <script>
+        // 1.使用h函数生成vnode
+        const vnode = h('div', { class: 'content', id: 'test' }, [
+            h('h2', null, '当前计数：0'),
+            h('button', { onClick: () => { console.log(666) } }, '+1')
+        ])
+
+        // 2.用vnode生成真实DOM并挂载到指定的根节点上
+        mount(vnode, document.querySelector('#app'))
+
+        // 3.创建新的vnode
+        setTimeout(() => {
+            const newVnode = h('div', { class: "box" }, [
+                h("h2", null, "Bpoi"),
+                h("button", { onClick: function () { console.log(777) } }, "-1")
+            ]);
+            patch(vnode, newVnode);
+        }, 1000)
+    </script> -->
+    <script>
+        // 1.创建根组件
+        const App = {
+            data: reactive({
+                count: 0
+            }),
+            render () {
+                return h("div", null, [
+                    h("h2", null, `当前计数: ${this.data.count}`),
+                    h("button", {
+                        onClick: () => {
+                            this.data.count++
+                        }
+                    }, "+1")
+                ])
+            }
+        }
+
+        // 2.挂载根组件
+        createApp(App).mount("#app");
+    </script>
+</body>
+
+</html>
