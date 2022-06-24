@@ -58,6 +58,12 @@ const routes: Array<RouteRecordRaw> = [
           },
         ],
       },
+      {
+        path: "vuex",
+        name: "vuex",
+        component: () =>
+          import(/* webpackChunkName: "vuex" */ "../views/VuexView.vue"),
+      },
     ],
   },
   // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下

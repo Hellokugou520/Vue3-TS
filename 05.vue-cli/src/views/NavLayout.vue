@@ -3,7 +3,8 @@
     <router-link to="/navLayout/compositionApi">CompositionApi</router-link> |
     <router-link to="/navLayout/otherFeatures">OtherFeatures</router-link> |
     <router-link to="/navLayout/home">Home</router-link> |
-    <router-link to="/navLayout/about">About</router-link>
+    <router-link to="/navLayout/about">About</router-link> |
+    <router-link to="/navLayout/vuex">Vuex</router-link>
     <span class="logout" @click="logout">Logout</span>
   </nav>
   <router-view />
