@@ -68,6 +68,19 @@ type idType = string | number;
 // 联合类型
 let id: idType = 1;
 
+interface Swim {
+  swimming: () => void;
+}
+interface Fly {
+  flying: () => void;
+}
+// 交叉类型
+type Action = Swim & Fly;
+const myAction: Action = {
+  swimming() {},
+  flying() {},
+};
+
 // 类型断言：TypeScript只允许类型断言转换为更具体或更不具体的类型版本
 // let el = document.getElementById("app") as HTMLImageElement;
 // el.src = "http://www.baidu.com";
