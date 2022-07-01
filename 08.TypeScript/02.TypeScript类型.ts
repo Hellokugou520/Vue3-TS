@@ -128,5 +128,32 @@ let myObj = {
 };
 myObj.say();
 
+// 枚举类型
+enum Direction {
+  Left,
+  Right,
+  Up,
+  Down,
+}
+function turnDirection(direction: Direction) {
+  // 枚举类型本身是有默认值的，也可以手动添加值
+  console.log(Direction);
+  switch (direction) {
+    case Direction.Left:
+      console.log("turn left");
+      break;
+    case Direction.Right:
+      console.log("turn right");
+      break;
+    case Direction.Up:
+      console.log("turn up");
+      break;
+    case Direction.Down:
+      console.log("turn down");
+      break;
+  }
+}
+turnDirection(Direction.Left);
+
 // 为了表示这是一个esmodule模块,否则ts会按照namespace模式解析
 export {};
