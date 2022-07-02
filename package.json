@@ -1,0 +1,33 @@
+{
+  "name": "vue3-ts",
+  "version": "1.0.0",
+  "description": "Vue3+TS练习项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "cz",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hellokugou520/Vue3-TS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hellokugou520/Vue3-TS/issues"
+  },
+  "homepage": "https://github.com/Hellokugou520/Vue3-TS#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
