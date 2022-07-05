@@ -2,6 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : './',
   transpileDependencies: true,
   configureWebpack: {
     plugins: [
