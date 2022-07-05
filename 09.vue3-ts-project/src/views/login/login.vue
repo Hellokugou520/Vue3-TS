@@ -1,17 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="@/assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="login">
+    <LoginPanel />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import LoginPanel from './components/login-panel.vue'
 
 export default defineComponent({
   components: {
-    HelloWorld
+    LoginPanel
   }
 })
 </script>
+
+<style lang="less" scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url('@/assets/img/login-bg.svg');
+}
+</style>
