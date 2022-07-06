@@ -5,7 +5,7 @@
       <el-tab-pane name="account">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><i-ep-UserFilled /></el-icon>
+            <el-icon><UserFilled /></el-icon>
             <span>账号登录</span>
           </span>
         </template>
@@ -14,7 +14,7 @@
       <el-tab-pane name="phone">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><i-epPhoneFilled /></el-icon>
+            <el-icon><PhoneFilled /></el-icon>
             <span>手机登录</span>
           </span>
         </template>
@@ -37,7 +37,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import LoginAccount from './login-account.vue'
 import LoginPhone from './login-phone.vue'
-import localCache from '@/utils/cache'
+import { localCache } from '@/utils'
 
 export default defineComponent({
   components: { LoginAccount, LoginPhone },

@@ -16,7 +16,7 @@ import {
 } from '@/service/login/login'
 import { IAccount } from '@/service/login/type'
 
-import localCache from '@/utils/cache'
+import { localCache } from '@/utils'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,

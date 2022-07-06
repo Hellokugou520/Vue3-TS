@@ -1,7 +1,7 @@
 import AxiosRequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
 
-import localCache from '@/utils/cache'
+import { localCache } from '@/utils'
 
 const axiosRequest = new AxiosRequest({
   baseURL: BASE_URL,
