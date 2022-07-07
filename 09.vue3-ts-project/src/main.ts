@@ -9,8 +9,8 @@ import { setupStore } from './store'
 
 const app = createApp(App)
 
-globalRegister(app)
-
-app.use(store).use(router).mount('#app')
-
+app.use(globalRegister)
+app.use(store)
+// 刷新后重写vuex数据
 setupStore()
+app.use(router).mount('#app')

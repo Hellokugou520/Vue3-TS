@@ -20,7 +20,16 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/main/main.vue')
+      import(/* webpackChunkName: "about" */ '../views/main/main.vue'),
+    children: []
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () =>
+      import(
+        /* webpackChunkName: "not-found" */ '../views/not-found/not-found.vue'
+      )
   }
 ]
 
