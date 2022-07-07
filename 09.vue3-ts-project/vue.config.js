@@ -25,6 +25,8 @@ module.exports = defineConfig({
     plugins: [
       // 配置ElementPlus的自动导入
       require('unplugin-vue-components/webpack')({
+        // 到相对路径的目录下去搜索组件
+        dirs: ['src/components', 'src/publicComponents'],
         resolvers: [
           ElementPlusResolver()
           // 自动注册图标组件
