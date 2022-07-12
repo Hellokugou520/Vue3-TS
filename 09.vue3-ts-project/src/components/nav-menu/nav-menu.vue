@@ -5,7 +5,7 @@
       <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="defaultValue"
       class="el-menu-vertical"
       :collapse="collapse"
       background-color="#0c2135"
@@ -48,10 +48,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useStore } from '@/store'
-import { useRouter } from 'vue-router'
-import { firstUpperCase } from '@/utils'
+import { useRouter, useRoute } from 'vue-router'
+import { firstUpperCase, findCurrentMenu } from '@/utils'
 
 export default defineComponent({
   props: {
@@ -63,7 +63,13 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const router = useRouter()
+    const route = useRoute()
+
     const userMenus = computed(() => store.state.login.userMenus)
+    // 当前路由路径
+    const currentPath = route.path
+    const menu = findCurrentMenu(userMenus.value, currentPath)
+    const defaultValue = ref(menu.id + '')
 
     const returnIconFlag = (icon: string) => {
       let temp,
@@ -83,6 +89,7 @@ export default defineComponent({
 
     return {
       userMenus,
+      defaultValue,
       returnIconFlag,
       handleMenuItemClick
     }

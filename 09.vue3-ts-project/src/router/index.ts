@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
-import { localCache } from '@/utils'
+import { localCache, firstMenu } from '@/utils'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -44,6 +44,10 @@ router.beforeEach((to) => {
   }
   if (localCache.getCache('token') && to.name === 'login') {
     return '/main'
+  }
+  // 跳转到当前用户的首个菜单
+  if (to.path === '/main') {
+    return firstMenu.url
   }
 })
 

@@ -1,5 +1,9 @@
 import { RouteRecordRaw } from 'vue-router'
+import { IBreadcrumb } from '@/publicComponents/bread-crumb/type'
 
+let firstMenu: any = null
+
+// 拿到当前用户的路由表
 const mapMenusToRoutes = (userMenus: any[]): RouteRecordRaw[] => {
   const routes: RouteRecordRaw[] = []
 
@@ -18,6 +22,9 @@ const mapMenusToRoutes = (userMenus: any[]): RouteRecordRaw[] => {
       if (menu.type === 2) {
         const route = allRoutes.find((route) => route.path === menu.url)
         if (route) routes.push(route)
+        if (!firstMenu) {
+          firstMenu = menu
+        }
       } else {
         _recurseGetRoute(menu.children)
       }
@@ -29,4 +36,31 @@ const mapMenusToRoutes = (userMenus: any[]): RouteRecordRaw[] => {
   return routes
 }
 
-export default mapMenusToRoutes
+// 获取当前用户的默认选中菜单
+const findCurrentMenu = (
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any => {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = findCurrentMenu(menu.children ?? [], currentPath)
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: findMenu.name })
+        return findMenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu
+    }
+  }
+}
+
+// 拿到当前path下的面包屑
+const pathMapBreadcrumbs = (userMenus: any[], currentPath: string) => {
+  const breadcrumbs: IBreadcrumb[] = []
+  findCurrentMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
+
+export { firstMenu, mapMenusToRoutes, findCurrentMenu, pathMapBreadcrumbs }
