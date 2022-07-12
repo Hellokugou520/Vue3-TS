@@ -4,19 +4,31 @@
       <component :is="isFold ? 'Fold' : 'Expand'" />
     </el-icon>
     <div class="content">
-      <div>面包屑</div>
+      <bread-crumb :breadcrumbs="breadcrumbs" />
       <user-info />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
+import { useStore } from '@/store'
+import { useRoute } from 'vue-router'
+import { pathMapBreadcrumbs } from '@/utils'
 
 export default defineComponent({
   emits: ['foldChange'],
   setup(props, { emit }) {
+    const store = useStore()
+
     const isFold = ref(false)
+    // 面包屑的数据
+    const breadcrumbs = computed(() => {
+      const userMenus = store.state.login.userMenus
+      const route = useRoute()
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
 
     const handleFoldClick = () => {
       isFold.value = !isFold.value
@@ -25,6 +37,7 @@ export default defineComponent({
 
     return {
       isFold,
+      breadcrumbs,
       handleFoldClick
     }
   }
