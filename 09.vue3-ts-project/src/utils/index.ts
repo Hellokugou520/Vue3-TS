@@ -6,6 +6,7 @@ import {
   findCurrentMenu,
   pathMapBreadcrumbs
 } from './map-menus'
+import { formatUtcString } from './date-format'
 
 export {
   localCache,
@@ -13,5 +14,6 @@ export {
   firstMenu,
   mapMenusToRoutes,
   findCurrentMenu,
-  pathMapBreadcrumbs
+  pathMapBreadcrumbs,
+  formatUtcString
 }
