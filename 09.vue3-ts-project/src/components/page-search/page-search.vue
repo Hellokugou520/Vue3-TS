@@ -6,7 +6,7 @@
       </template>
       <template #footer>
         <div class="handle-btns">
-          <el-button icon="refresh">重置</el-button>
+          <el-button icon="refresh" @click="handleResetClick">重置</el-button>
           <el-button type="primary" icon="search">搜索</el-button>
         </div>
       </template>
@@ -24,17 +24,25 @@ export default defineComponent({
       reuqired: true
     }
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  setup(props) {
+    // 根据配置项动态生成表单对象
+    const formItems = props.searchFormConfig?.formItems ?? []
+    const formOriginData: any = {}
+    for (const item of formItems) {
+      formOriginData[item.field] = ''
+    }
+    const formData = ref(formOriginData)
+
+    // 表单重置
+    const handleResetClick = () => {
+      for (const key in formOriginData) {
+        formData.value[`${key}`] = formOriginData[key]
+      }
+    }
 
     return {
-      formData
+      formData,
+      handleResetClick
     }
   }
 })
