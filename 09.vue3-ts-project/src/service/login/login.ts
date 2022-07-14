@@ -12,8 +12,7 @@ enum LoginAPI {
 export function accountLoginRequest(account: IAccount) {
   return axiosRequest.post<IDataType<ILoginResult>>({
     url: LoginAPI.AccountLogin,
-    data: account,
-    showLoading: true
+    data: account
   })
 }
 

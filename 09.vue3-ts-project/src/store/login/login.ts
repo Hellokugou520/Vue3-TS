@@ -16,7 +16,7 @@ import {
 } from '@/service/login/login'
 import { IAccount } from '@/service/login/type'
 
-import { localCache, mapMenusToRoutes } from '@/utils'
+import { localCache, mapMenusToRoutes, mapMenusToPermissions } from '@/utils'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -24,7 +24,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permissions: []
     }
   },
   getters: {},
@@ -42,6 +43,9 @@ const loginModule: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute('main', route)
       })
+
+      // 获取用户按钮的权限
+      state.permissions = mapMenusToPermissions(userMenus)
     }
   },
   actions: {

@@ -63,4 +63,28 @@ const pathMapBreadcrumbs = (userMenus: any[], currentPath: string) => {
   return breadcrumbs
 }
 
-export { firstMenu, mapMenusToRoutes, findCurrentMenu, pathMapBreadcrumbs }
+// 拿到当前菜单下的按钮权限数组
+const mapMenusToPermissions = (userMenus: any[]) => {
+  const permissions: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permissions.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+
+  return permissions
+}
+
+export {
+  firstMenu,
+  mapMenusToRoutes,
+  findCurrentMenu,
+  pathMapBreadcrumbs,
+  mapMenusToPermissions
+}

@@ -23,7 +23,8 @@ const axiosRequest = new AxiosRequest({
     responseInterceptorCatch: (err) => {
       return err
     }
-  }
+  },
+  showLoading: true
 })
 
 export default axiosRequest
