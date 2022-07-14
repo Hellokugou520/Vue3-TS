@@ -7,7 +7,9 @@
       <template #footer>
         <div class="handle-btns">
           <el-button icon="refresh" @click="handleResetClick">重置</el-button>
-          <el-button type="primary" icon="search">搜索</el-button>
+          <el-button type="primary" icon="search" @click="handleQueryClick"
+            >搜索</el-button
+          >
         </div>
       </template>
     </dynamic-form>
@@ -24,7 +26,8 @@ export default defineComponent({
       reuqired: true
     }
   },
-  setup(props) {
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
     // 根据配置项动态生成表单对象
     const formItems = props.searchFormConfig?.formItems ?? []
     const formOriginData: any = {}
@@ -35,14 +38,18 @@ export default defineComponent({
 
     // 表单重置
     const handleResetClick = () => {
-      for (const key in formOriginData) {
-        formData.value[`${key}`] = formOriginData[key]
-      }
+      formData.value = formOriginData
+      emit('resetBtnClick')
+    }
+    // 搜索按钮
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
     }
 
     return {
       formData,
-      handleResetClick
+      handleResetClick,
+      handleQueryClick
     }
   }
 })
