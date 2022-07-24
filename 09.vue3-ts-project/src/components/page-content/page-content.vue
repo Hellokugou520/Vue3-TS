@@ -8,7 +8,9 @@
     >
       <!-- 头部的插槽 -->
       <template #headerHandler>
-        <el-button v-if="isCreate" type="primary">新建用户</el-button>
+        <el-button v-if="isCreate" type="primary" @click="handleNewClick"
+          >新建用户</el-button
+        >
       </template>
 
       <!-- 表格列的插槽 -->
@@ -30,12 +32,22 @@
         <span>{{ $filters.formatTime(row.updateAt) }}</span>
       </template>
       <!-- 操作 -->
-      <template #handler>
+      <template #handler="{ row }">
         <div class="handle-btns">
-          <el-button v-if="isUpdate" icon="edit" size="small" text
+          <el-button
+            v-if="isUpdate"
+            icon="edit"
+            size="small"
+            text
+            @click="handleEditClick(row)"
             >编辑</el-button
           >
-          <el-button v-if="isDelete" icon="delete" size="small" text
+          <el-button
+            v-if="isDelete"
+            icon="delete"
+            size="small"
+            text
+            @click="handleDeleteClick(row)"
             >删除</el-button
           >
         </div>
@@ -70,7 +82,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  emits: ['newBtnClick', 'editBtnClick'],
+  setup(props, { emit }) {
     const store = useStore()
 
     // 获取按钮操作权限
@@ -102,6 +115,20 @@ export default defineComponent({
       store.getters['system/pageListCount'](props.pageName)
     )
 
+    // 删除/新建/编辑操作
+    const handleDeleteClick = (item: any) => {
+      store.dispatch('system/deletePageDataAction', {
+        pageName: props.pageName,
+        id: item.id
+      })
+    }
+    const handleNewClick = () => {
+      emit('newBtnClick')
+    }
+    const handleEditClick = (item: any) => {
+      emit('editBtnClick', item)
+    }
+
     // 其余的动态插槽名称(不同页面之间的非公共插槽)
     const otherPropSlots = props.contentTableConfig?.propList.filter(
       (item: any) => {
@@ -121,6 +148,9 @@ export default defineComponent({
       getPageData,
       dataList,
       dataCount,
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick,
       otherPropSlots
     }
   }

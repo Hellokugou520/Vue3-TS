@@ -2,7 +2,7 @@ import { IForm } from '@/publicComponents/dynamic-form/type'
 
 export const searchFormConfig: IForm = {
   labelWidth: '120px',
-  itemLayout: {
+  itemStyle: {
     padding: '10px 40px'
   },
   colLayout: {
