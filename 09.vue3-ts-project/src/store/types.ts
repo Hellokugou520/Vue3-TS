@@ -5,6 +5,7 @@ import { ISystemState } from './main/system/type'
 export interface IRootState {
   entireDepartment: any[]
   entireRole: any[]
+  entireMenu: any[]
 }
 
 export interface IRootWithModule {

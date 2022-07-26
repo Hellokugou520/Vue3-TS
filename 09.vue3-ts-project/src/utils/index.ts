@@ -5,7 +5,8 @@ import {
   mapMenusToRoutes,
   findCurrentMenu,
   pathMapBreadcrumbs,
-  mapMenusToPermissions
+  mapMenusToPermissions,
+  menuMapLeafKeys
 } from './map-menus'
 import { formatUtcString } from './date-format'
 
@@ -17,5 +18,6 @@ export {
   findCurrentMenu,
   pathMapBreadcrumbs,
   mapMenusToPermissions,
+  menuMapLeafKeys,
   formatUtcString
 }
