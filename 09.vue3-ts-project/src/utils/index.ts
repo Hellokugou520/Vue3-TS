@@ -9,6 +9,7 @@ import {
   menuMapLeafKeys
 } from './map-menus'
 import { formatUtcString } from './date-format'
+import { convertData } from './echarts/convert-data'
 
 export {
   localCache,
@@ -19,5 +20,6 @@ export {
   pathMapBreadcrumbs,
   mapMenusToPermissions,
   menuMapLeafKeys,
-  formatUtcString
+  formatUtcString,
+  convertData
 }
